@@ -22,25 +22,16 @@ namespace GoroskoNavigate
             list.ItemSelected += List_ItemSelected;
 
             Button bbk = new Button { Text = "Вперед" };
-            bbk.Clicked += Bbk_Clicked; ;
+            bbk.Clicked += Bbk_Clicked;
 
             Button bb = new Button { Text = "Назад" };
             bb.Clicked += Bb_Clicked;
-
-            Content = new StackLayout { Children = { list, bbk, bb } };
         }
 
-        private async void Bb_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PopAsync();
-        }
-
-        private async void Bbk_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Laupaev());
-        }
         string vremja;
         private async void List_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+
+
         {
             string text = e.SelectedItem.ToString();
             if (e.SelectedItemIndex == 0)
@@ -77,7 +68,19 @@ namespace GoroskoNavigate
             {
                 vremja = "20:00";
             }
+
             await DisplayAlert(text, vremja, "Продолжить");
+
+            StackLayout bubi = new StackLayout();
+        }
+        private async void Bbk_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Puhapaev());
+        }
+
+        private async void Bb_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PopAsync();
         }
     }
 }
